@@ -1,0 +1,497 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android Camera 实时滤镜 | Ching.Soulwolf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Soulwolf">
+    
+    <meta name="description" content="版权声明：转载自http://blog.csdn.net/wyhuan1030/article/details/45094715
+一、Android系统将内置滤镜功能滤镜功能有二十余种不同效果，不逊色于极受欢迎的智能手机应用Instagram所产生的效果。
+
+1、颜色矩阵 ColorMatrix
+a">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="devsoulwolf" />
+    <meta name="twitter:title" content="Android Camera 实时滤镜 | Ching.Soulwolf" />
+      
+    
+    
+    <link rel="alternate" href="https://github.com/devsoulwolf" title="Ching.Soulwolf" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/author.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.png" alt="Ching.Soulwolf" title="Ching.Soulwolf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Ching.Soulwolf">Ching.Soulwolf</a></h1>
+				<h2 class="blog-motto">Welcome to Ching.Soulwolf personal blog, and look forward to everyone&#39;s acquaintance!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.cblog.cc">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/03/Android-Camera-实时滤镜/" title="Android Camera 实时滤镜" itemprop="url">Android Camera 实时滤镜</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://plus.google.com/106830580871482751192?rel=author" title="Soulwolf" target="_blank" itemprop="author">Soulwolf</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-03T10:03:50.000Z" itemprop="datePublished">2015-09-03</time>
+    更新日期:<time datetime="2015-09-03T10:58:43.023Z" itemprop="dateModified">2015-09-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Android系统将内置滤镜功能"><span class="toc-number">1.</span> <span class="toc-text">一、Android系统将内置滤镜功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Android平台滤镜"><span class="toc-number">2.</span> <span class="toc-text">二、Android平台滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="##"><span class="toc-number">3.</span> <span class="toc-text">#</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、相机滤镜介绍"><span class="toc-number">4.</span> <span class="toc-text">二、相机滤镜介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、图片美化滤镜"><span class="toc-number">5.</span> <span class="toc-text">三、图片美化滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、社交分享滤镜"><span class="toc-number">6.</span> <span class="toc-text">四、社交分享滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、总结"><span class="toc-number">7.</span> <span class="toc-text">五、总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、基于Android平台基本滤镜算法的实现"><span class="toc-number">8.</span> <span class="toc-text">七、基于Android平台基本滤镜算法的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、后滤镜时代"><span class="toc-number">9.</span> <span class="toc-text">八、后滤镜时代</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九，基于Android平台PS特效的自定义算法的实现"><span class="toc-number">10.</span> <span class="toc-text">九，基于Android平台PS特效的自定义算法的实现</span></a></li></ol>
+		</div>
+		
+		<p>版权声明：转载自<a href="http://blog.csdn.net/wyhuan1030/article/details/45094715" title="Neil Android Camera" target="_blank" rel="external">http://blog.csdn.net/wyhuan1030/article/details/45094715</a></p>
+<h1 id="一、Android系统将内置滤镜功能">一、Android系统将内置滤镜功能</h1><p>滤镜功能有二十余种不同效果，不逊色于极受欢迎的智能手机应用Instagram所产生的效果。</p>
+<p><img src="http://img.blog.csdn.net/20150417112538878?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>1、颜色矩阵 ColorMatrix</p>
+<p>android中可以通过颜色矩阵（ColorMatrix类）方面的操作颜色，颜色矩阵是一个5x4 的矩阵。可以用来方面的修改图片中RGBA各分量的值，颜色矩阵以一维数组的方式存储如下：<br> [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t ]<br>他通过RGBA四个通道来直接操作对应颜色，如果会使用Photoshop就会知道有时处理图片通过控制RGBA各颜色通道来做出特殊的效果。</p>
+<p>这个矩阵对颜色的作用计算方式如示：</p>
+<p><img src="http://img.blog.csdn.net/20150417112506439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>矩阵的运算规则是矩阵A的一行乘以矩阵C的一列作为矩阵R的一行，</p>
+<p>C矩阵是图片中包含的ARGB信息，R矩阵是用颜色矩阵应用于C之后的新的颜色分量，运算结果如下：</p>
+<p>R’ = a<em>R + b</em>G + c<em>B + d</em>A + e;<br>G’ = f<em>R + g</em>G + h<em>B + i</em>A + j;<br>B’ = k<em>R + l</em>G + m<em>B + n</em>A + o;<br>A’ = p<em>R + q</em>G + r<em>B + s</em>A + t;</p>
+<p>Ps：第1~3列是控制色相的，第4列是控制透明度的，第5列是分量的增加值。</p>
+<p>2、基本滤镜效果的实现：</p>
+<p>如果我们用ColorMatrix调整RGB三种颜色的比重，就可以实现诸如单色、黑白的效果。</p>
+<p>3、Lomo滤镜效果的实现：</p>
+<p>改变图像数值+遮罩</p>
+<h1 id="二、Android平台滤镜">二、Android平台滤镜</h1><p>滤镜这个功能在目前的市场上应用很广泛，发展也非常快，总结起来，基本上有以下三种应用会包含滤镜功能，都各有所长。</p>
+<p><img src="http://img.blog.csdn.net/20150420142811120?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h1 id="#">#</h1><h1 id="二、相机滤镜介绍">二、相机滤镜介绍</h1><p>1、相机360镜介绍</p>
+<p>相机360的滤镜特效类别比较多，每一类别又分为不同的特效。</p>
+<p>其最主要的特点是它具有实时拍照滤镜功能，且在关闭重新进入后可记忆之前选择的滤镜。</p>
+<p>缺点是滤镜效果一般，而且选择滤镜的交互比较复杂，不好操作。</p>
+<p><img src="http://img.blog.csdn.net/20150420142837750?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""> <img src="http://img.blog.csdn.net/20150420142851821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>2、魔幻时刻相机滤镜介绍（静态滤镜）</p>
+<p>魔幻时刻相机Magic Hour是一款从ios移植过来的优秀拍照软件。</p>
+<p>从其滤镜管理和滤镜库的丰富程度就可以看出这款相机的偏重点了！具有大量的滤镜效果且支持下载。滤镜管理页面很“整洁”，易操作。</p>
+<p><img src="http://img.blog.csdn.net/20150420142747464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""> <img src="http://img.blog.csdn.net/20150420142806091?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h1 id="三、图片美化滤镜">三、图片美化滤镜</h1><p>在图片美化界，美图秀秀是当之无愧的NO.1，其滤镜效果按照tab页的方式分为几类供选择，操作非常直观，且每一种特效都会有非常漂亮的效果。<br><img src="http://img.blog.csdn.net/20150420142950180?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>Pixlr-0-matic，这款图片处理工具的滤镜不管从UI设计来讲还是从交互来讲都非常赞，而且它的滤镜还有增加光影效果、色相效果等功能，美化照片能力超强。<br><img src="http://img.blog.csdn.net/20150420143004813?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h1 id="四、社交分享滤镜">四、社交分享滤镜</h1><p>社交应用也越来越注重图片分享时的滤镜功能。<br>腾讯微博的滤镜效果如图，交互简洁，清爽，滤镜效果很佳，一推出便得到广泛应用和赞扬。<br><img src="http://img.blog.csdn.net/20150420143018541?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>Path是得到普遍认可的优秀产品，包括其滤镜效果。<br>简洁是社交分享滤镜的最主要特点，path的滤镜也承袭了这一风格，且滤镜效果很佳。<br><img src="http://img.blog.csdn.net/20150420143030491?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h1 id="五、总结">五、总结</h1><p><img src="http://img.blog.csdn.net/20150420143056527?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>1、采用实时拍照滤镜，在成相的同时可以使用户看到自己想要的照片效果。</p>
+<p> 2、滤镜种类不宜过多，把握关键的最受用户喜欢的滤镜效果，比如：素描、油画、炫彩、老照片等经典效果。</p>
+<p> 3、追求高质量滤镜效果，我们要让每一个滤镜都能够使照片变得更加漂亮，而不是鸡肋效果。</p>
+<p> 4、交互上尽量简洁，一目了然，避免多重选择和切换。</p>
+<h1 id="七、基于Android平台基本滤镜算法的实现">七、基于Android平台基本滤镜算法的实现</h1><p>1、Android提供了改变图像数值的方法ColorMatrix，通过ColorMatrix方法可以实现基本滤镜，如黑白、灰色、泛黄等效果。</p>
+<p>2、通过ColorMatrix改变图像数值，生成变换矩阵，利用矩阵相乘，来改变每个点的像素值。</p>
+<p> Matrix =&gt;</p>
+<pre><code><span class="label">r1</span> <span class="literal">r2</span> <span class="literal">r3</span> <span class="literal">r4</span>
+<span class="label">g1</span> g2 g3 g4
+<span class="keyword">b1 </span><span class="keyword">b2 </span><span class="keyword">b3 </span><span class="keyword">b4
+</span><span class="label">a1</span> <span class="literal">a2</span> <span class="literal">a3</span> <span class="literal">a4</span>
+</code></pre><p>变化以后</p>
+<p>R’  =  R <em> r1  +  G </em> r2  +  B <em> r3  +  A </em> r4  +  r5;</p>
+<p>G’  =  R <em> g1  +  G </em> g2  +  B <em>g3  +  A </em> g4  +  g5;</p>
+<p>B’  =  R <em> b1  +  G </em> b2  +  B <em>b3  +  A </em> b4  +  b5;</p>
+<p>A’  =  R <em> a1  +  G </em> a2  +  B <em> a3  +  A </em> a4  +  a5;</p>
+<font color="red">第1~3列是控制色相的，第4列是控制透明度的，第5列是分量的增加值</font>
+
+<p>3、R、G、B、A系数值变化会修改图像的效果</p>
+<p>（1）对角线值为1.0，其他为0时，图像保证的是原图像</p>
+<pre><code>图像原图
+R     <span class="number">1.0</span>      <span class="number">0</span>     <span class="number">0</span>       <span class="number">0</span>     <span class="number">0</span>
+G     <span class="number">0</span>       <span class="number">1.0</span>   <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+ B     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1.0</span>   <span class="number">0</span>     <span class="number">0</span>
+ A     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1.0</span>     <span class="number">0</span>
+</code></pre><p><img src="http://img.blog.csdn.net/20150421092300819?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>（2）对角线值若大于1.0，其他为0时，图像偏亮</p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td width="513" valign="top" colspan="6" style="background:rgb(51,153,102)"></td></p>
+<p></p><p><span style="color:rgb(255,255,255)">图像偏亮</span></p><br><br><p></p>
+<p><tr></tr></p>
+<p><td valign="top"></td></p>
+<p></p><p>R</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>2.0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><br><p></p>
+<p><tr></tr></p>
+<p><td valign="top"></td></p>
+<p></p><p>G</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>2.0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><br><p></p>
+<p><tr></tr></p>
+<p><td valign="top"></td></p>
+<p></p><p>B</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>2.0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><br><p></p>
+<p><tr></tr></p>
+<p><td valign="top"></td></p>
+<p></p><p>A</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>2.0</p><br><p></p>
+<p><td valign="top"></td></p>
+<p></p><p>0</p><br><br><br><br><p></p>
+<p><img src="http://img.blog.csdn.net/20150421092323704?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>（3）对角线值若小于1.0，其他为0时，图像偏暗</p>
+<table><br><tbody><br><tr><br><td width="513" valign="top" colspan="6" style="background:rgb(51,153,102)"><br><p><span style="color:rgb(255,255,255)">图像偏暗</span></p><br></td><br></tr><br><tr><br><td valign="top"><br><p>R</p><br></td><br><td valign="top"><br><p>0.5</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br><tr><br><td valign="top"><br><p>G</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0.5</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br><tr><br><td valign="top"><br><p>B</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0.5</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br><tr><br><td valign="top"><br><p>A</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0.5</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br></tbody><br></table>
+
+<p><img src="http://img.blog.csdn.net/20150421092339335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>（4）设定图像为灰色，通过查资料 R 0.3 G0.59 B 0.11</p>
+<table><br><tbody><br><tr><br><td width="513" valign="top" colspan="6" style="background:rgb(51,153,102)"><br><p><span style="color:rgb(255,255,255)">图像偏暗</span></p><br></td><br></tr><br><tr><br><td valign="top"><br><p>R</p><br></td><br><td valign="top"><br><p>0.3f</p><br></td><br><td valign="top"><br><p>0.59f</p><br></td><br><td valign="top"><br><p>0.11f</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br><tr><br><td valign="top"><br><p>G</p><br></td><br><td valign="top"><br><p>0.3f</p><br></td><br><td valign="top"><br><p>0.59f</p><br></td><br><td valign="top"><br><p>0.11f</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br><tr><br><td valign="top"><br><p>B</p><br></td><br><td valign="top"><br><p>0.3f</p><br></td><br><td valign="top"><br><p>0.59f</p><br></td><br><td valign="top"><br><p>0.11f</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br><tr><br><td valign="top"><br><p>A</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br><td valign="top"><br><p>1.0</p><br></td><br><td valign="top"><br><p>0</p><br></td><br></tr><br></tbody><br></table>
+
+<p><img src="http://img.blog.csdn.net/20150421092512957?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>4、根据以上的实现，实现基本滤镜的算法是</p>
+<figure class="highlight java"><figcaption><span>public Bitmap getBlackStyle(Bitmap src)&#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line"></span><br><span class="line">Bitmap dst = Bitmap.createBitmap(src.getWidth(),src.getHeight(), Config.ARGB_8888);</span><br><span class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(dst);</span><br><span class="line">		ColorMatrix cm = <span class="keyword">new</span> ColorMatrix();</span><br><span class="line">        <span class="comment">//设定图像为灰色，通过查资料 R 0.3 G0.59 B 0.11</span></span><br><span class="line">		cm.set(<span class="keyword">new</span> <span class="keyword">float</span>[] &#123; </span><br><span class="line">				<span class="number">0.3f</span>, <span class="number">0.59f</span>, <span class="number">0.11f</span>, <span class="number">0</span>, <span class="number">0</span>, </span><br><span class="line">				<span class="number">0.3f</span>, <span class="number">0.59f</span>, <span class="number">0.11f</span>, <span class="number">0</span>, <span class="number">0</span>, </span><br><span class="line">				<span class="number">0.3f</span>, <span class="number">0.59f</span>, <span class="number">0.11f</span>, <span class="number">0</span>, <span class="number">0</span>, </span><br><span class="line">				<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span> &#125;);</span><br><span class="line">		Paint paint = <span class="keyword">new</span> Paint();</span><br><span class="line">		paint.setColorFilter(<span class="keyword">new</span> ColorMatrixColorFilter(cm));</span><br><span class="line">		canvas.drawBitmap(src, <span class="number">0</span>, <span class="number">0</span>, paint);</span><br><span class="line">		<span class="comment">// 保存图像</span></span><br><span class="line">		canvas.save(Canvas.ALL_SAVE_FLAG);</span><br><span class="line">        <span class="comment">// 存储</span></span><br><span class="line">		canvas.restore();</span><br><span class="line">		<span class="keyword">return</span> dst;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="八、后滤镜时代">八、后滤镜时代</h1><p>在网上看到一些信息和相机应用，很多相机玩家对手机相机的使用是越来越多，作为手机相机的开发者需要有更多的创意和特性为手机相机添彩！如下几点相机的发展方向供大家参考：</p>
+<p><img src="http://img.blog.csdn.net/20150421091600117?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>（1）实时滤镜</p>
+<pre><code><span class="title">VIDA</span> 是一款来自国内团队的照相应用，它的一大特色就是实时滤镜，在拍摄的同时你已经可以预览到最终的成品。这是一个强化滤镜功能的方向。和单纯的加入新滤镜不同，实时滤镜把握住了所见即所得的精髓。
+</code></pre><p>（2）GIF 动画</p>
+<pre><code><span class="title">GIFshop</span> 是 一款快速制作定格动画的应用。它结合了动态画面的叙事能力，保留了图片的小体积特点。但 GIFshop 的问题也非常突出，比起记录生活，它更适合于创作一些幽默的动态小品。一旦涉及到 “创作” ，用户的门槛就被无情地提高了。但让画面动起来的想法要比单纯的强化滤镜要走的更远一些。
+</code></pre><p>（3）动态图片</p>
+<pre><code><span class="title">Cinemagram</span> 制 作出来的图片可以只在某一特定区域中出现动态效果。你可以那它创建那种网上流行的“会动的海报”。比起 GIFshop ，它能够让普通的记事照片变得有点魔幻。由于应用的构思巧妙，因此适合套用在不同的场合中。用户的门槛相对较小，但收获却是挺大的。我将其看作是 GIFshop 的改进版本。
+</code></pre><p>（4）声音+图片</p>
+<pre><code>  <span class="title">Picle</span> 是 一款让你在拍摄相片的同时也记录下一段音频的应用。它的好处是让 “画外音” 这一有趣的角色参与照片的叙事。相比上述应用，Picle 进入了另个维度，它考虑到图片的叙事瓶颈，并试图通过加入音频来突破。Picle 所面临的问题是，它建立了一种新的格式，而这种格式目前还只能在 Picle 体系内分享。
+
+后滤镜时代里各支团队在不同方向上设定了不同的瓶颈，并通过一定的方法来突破。思考的起点无一例外的定在了增强图片叙事能力之上。从目前的情况来看，有一些事项值得注意：
+</code></pre><p>· 体积：不能因为增强了效果而变得臃肿。</p>
+<p>· 题材：不能因为特别适合某种题材而狭隘了用户的使用场景。</p>
+<p>· 格式：在现有流行的格式上入手，避免使用新格式。</p>
+<p>· 门槛：在用户利益和使用复杂度上寻求平衡。</p>
+<p>· 多媒体：在图片上做加法，但不能演变成拍摄视频。</p>
+<pre><code>相信随着硬件技术的增强，手机将成为一类新的照相设备。它也许替代不了传统的相机，但它却能因为应用而变得不可替代。而可以预见的是，滤镜不会是手机照相的最后一站。
+</code></pre><h1 id="九，基于Android平台PS特效的自定义算法的实现">九，基于Android平台PS特效的自定义算法的实现</h1><p><img src="https://img.alicdn.com/imgextra/i2/1025192026/TB2RrzWeVXXXXaWXpXXXXXXXXXX_!!1025192026.png" alt=""></p>
+<p>在ARGB颜色空间，分别使用A（Transparency）、R（Red）、G（Green）、B（Blue）四个值来描述一个像素点，那么对于一个宽w高h的图片来说，共有w<em>h个像素点，可以用一个数组对象int [] pixels来表示相应的图片，pixels = { p1,p2,p3…}。在把各个像素点都用ARGB来表示，那么这张图片就可以用一个[w</em>h,4]的矩阵来描述：</p>
+<pre><code>pixels = {
+     pa<span class="number">1</span>，pr<span class="number">1</span>，p<span class="keyword">g1</span>，pb<span class="number">1</span>，
+     pa<span class="number">2</span>，pr<span class="number">2</span>，p<span class="keyword">g2</span>，pb<span class="number">2</span>，
+     pa<span class="number">3</span>，pr<span class="number">3</span>，p<span class="keyword">g3</span>，pb<span class="number">3</span>，
+     ……
+}
+</code></pre><p>android平台在获取像素方面提供了 Bitmap.getPixels 方法，我需要做的是遍历图像的像素点，对每一个像素点进行计算。然后将计算完的像素点通过Color.red/green/blue 方法处理后，将像素点填回Bitmap，从而得到滤镜后的图像。这种方式比ColorMatrix 要灵活，可以满足PS特效的实现效果。</p>
+<p>1、简单的反色滤镜实现</p>
+<pre><code>取出图片的像素点，然后用<span class="number">255</span>减去每个像素点，那么得到的就是一张有反色效果的图片
+</code></pre><p><img src="http://img.blog.csdn.net/20150424103008605" alt=""></p>
+<p>算法如下：<br><figure class="highlight java"><figcaption><span>/**</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> * <span class="annotation">@author</span> neil</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AntiColorFilter</span> <span class="keyword">implements</span> <span class="title">ImageFilterInterface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ImageData image = <span class="keyword">null</span>; <span class="comment">// 图片信息类</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AntiColorFilter</span><span class="params">(Bitmap bmp)</span> </span>&#123;</span><br><span class="line">        image = <span class="keyword">new</span> ImageData(bmp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ImageData <span class="title">imageProcess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> width = image.getWidth();</span><br><span class="line">        <span class="keyword">int</span> height = image.getHeight();</span><br><span class="line">        <span class="keyword">int</span> R, G, B, pixel;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</span><br><span class="line">                R = image.getRComponent(x, y); <span class="comment">// 获取RGB三原色</span></span><br><span class="line">                G = image.getGComponent(x, y);</span><br><span class="line">                B = image.getBComponent(x, y);</span><br><span class="line"></span><br><span class="line">                R = <span class="number">255</span> - R;</span><br><span class="line">                B = <span class="number">255</span> - B;</span><br><span class="line">                G = <span class="number">255</span> - G;</span><br><span class="line"></span><br><span class="line">                image.setPixelColor(x, y, R, G, B);</span><br><span class="line">            &#125; <span class="comment">// x</span></span><br><span class="line">        &#125; <span class="comment">// y  </span></span><br><span class="line">        <span class="keyword">return</span> image;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、油画滤镜的实现</p>
+<pre><code>通过查资料了解到油画滤镜的算法是”用当前点四周一定范围内任意一点的颜色来替代当前点颜色，最常用的是随机的采用相邻点进行替代”
+</code></pre><p><img src="http://img.blog.csdn.net/20150424103107223" alt=""></p>
+<p>算法如下：<br><figure class="highlight java"><figcaption><span>public ImageData imageProcess() &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> width = image.getWidth();</span><br><span class="line">    <span class="keyword">int</span> height = image.getHeight();</span><br><span class="line">    <span class="keyword">int</span> R, G, B, pixel,xx = <span class="number">0</span>,yy = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</span><br><span class="line">            <span class="keyword">int</span> pos = getRandomInt(<span class="number">1</span>, <span class="number">10000</span>) % Model;</span><br><span class="line">            xx = (x + pos) &lt; width ? (x + pos) : (x - pos) &gt;= <span class="number">0</span> ? (x - pos) : x;</span><br><span class="line">            yy = (y + pos) &lt; height ? (y + pos) : (y - pos) &gt;= <span class="number">0</span> ? (y - pos) : y;  </span><br><span class="line"></span><br><span class="line">            R = image.getRComponent(xx, yy); <span class="comment">// 获取RGB三原色</span></span><br><span class="line">            G = image.getGComponent(xx, yy);</span><br><span class="line">            B = image.getBComponent(xx, yy);</span><br><span class="line"></span><br><span class="line">            image.setPixelColor(x, y, R, G, B);</span><br><span class="line">        &#125; <span class="comment">// x</span></span><br><span class="line">    &#125; <span class="comment">// y</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomInt</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> min = Math.min(a, b);    </span><br><span class="line">    <span class="keyword">int</span> max = Math.max(a, b);</span><br><span class="line">    <span class="keyword">return</span> min + (<span class="keyword">int</span>)(Math.random() * (max - min + <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3、冰冻滤镜的实现</p>
+<pre><code>冰冻滤镜的算法是将像素点颜色加深，每个象素都用RGB三原色来表示，（<span class="number">0</span>，<span class="number">0</span>，<span class="number">0</span>）就是纯黑，而（<span class="number">255</span>，<span class="number">255</span>，<span class="number">255</span>）就是纯白，因此将没个像素点的RGB指变小，颜色就会加深
+</code></pre><p><img src="http://img.blog.csdn.net/20150424103335976" alt=""></p>
+<figure class="highlight java"><figcaption><span>int width = image.getWidth();</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> height = image.getHeight();</span><br><span class="line"><span class="keyword">int</span> R, G, B, pixel;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; height; y++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</span><br><span class="line">        R = image.getRComponent(x, y); <span class="comment">// 获取RGB三原色</span></span><br><span class="line">        G = image.getGComponent(x, y);</span><br><span class="line">        B = image.getBComponent(x, y);</span><br><span class="line"></span><br><span class="line">        pixel = R - G - B;</span><br><span class="line">        pixel = pixel * <span class="number">3</span> / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (pixel &lt; <span class="number">0</span>)</span><br><span class="line">            pixel = -pixel;</span><br><span class="line">        <span class="keyword">if</span> (pixel &gt; <span class="number">255</span>)</span><br><span class="line">            pixel = <span class="number">255</span>;</span><br><span class="line">        R = pixel; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        pixel = G - B - R;</span><br><span class="line">        pixel = pixel * <span class="number">3</span> / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (pixel &lt; <span class="number">0</span>)</span><br><span class="line">            pixel = -pixel;</span><br><span class="line">        <span class="keyword">if</span> (pixel &gt; <span class="number">255</span>)</span><br><span class="line">            pixel = <span class="number">255</span>;</span><br><span class="line">        G = pixel;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        pixel = B - R - G;</span><br><span class="line">        pixel = pixel * <span class="number">3</span> / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (pixel &lt; <span class="number">0</span>)</span><br><span class="line">            pixel = -pixel;</span><br><span class="line">        <span class="keyword">if</span> (pixel &gt; <span class="number">255</span>)</span><br><span class="line">            pixel = <span class="number">255</span>;</span><br><span class="line">        B = pixel;</span><br><span class="line"></span><br><span class="line">        image.setPixelColor(x, y, R, G, B);</span><br><span class="line">    &#125; <span class="comment">// x</span></span><br><span class="line">&#125; <span class="comment">// y</span></span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Camera/">Camera</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.cblog.cc/2015/09/03/Android-Camera-实时滤镜/" data-title="Android Camera 实时滤镜 | Ching.Soulwolf" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/09/03/New-environment-new-start/"  title="New environment,new start">
+ <strong>NEXT:</strong><br/> 
+ <span>New environment,new start
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Android系统将内置滤镜功能"><span class="toc-number">1.</span> <span class="toc-text">一、Android系统将内置滤镜功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Android平台滤镜"><span class="toc-number">2.</span> <span class="toc-text">二、Android平台滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="##"><span class="toc-number">3.</span> <span class="toc-text">#</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、相机滤镜介绍"><span class="toc-number">4.</span> <span class="toc-text">二、相机滤镜介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、图片美化滤镜"><span class="toc-number">5.</span> <span class="toc-text">三、图片美化滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、社交分享滤镜"><span class="toc-number">6.</span> <span class="toc-text">四、社交分享滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、总结"><span class="toc-number">7.</span> <span class="toc-text">五、总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、基于Android平台基本滤镜算法的实现"><span class="toc-number">8.</span> <span class="toc-text">七、基于Android平台基本滤镜算法的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、后滤镜时代"><span class="toc-number">9.</span> <span class="toc-text">八、后滤镜时代</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九，基于Android平台PS特效的自定义算法的实现"><span class="toc-number">10.</span> <span class="toc-text">九，基于Android平台PS特效的自定义算法的实现</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Camera/" title="Camera">Camera<sup>1</sup></a></li>
+		
+			<li><a href="/tags/过去，现在，未来/" title="过去，现在，未来">过去，现在，未来<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="https://github.com/devsoulwolf" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Don&#39;t aim for success if you want it; just do what you love and believe in, and it will come naturally. <br/>
+			如果你想要成功，不要去追求成功；尽管做你自己热爱的事情并且相信它，成功自然到来。</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/freakqin" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/devsoulwolf" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/devsoulwolf" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/soulwolf.ching" target="_blank" title="facebook"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://www.cblog.cc" target="_blank" title="Soulwolf">Soulwolf</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"soulwolf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>
