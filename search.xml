@@ -1,102 +1,13 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<search>
   
-    <title>Android Camera 实时滤镜 | Ching.Soulwolf</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
     
-    <meta name="author" content="Soulwolf">
-    
-    <meta name="description" content="版权声明：转载自http://blog.csdn.net/wyhuan1030/article/details/45094715
-一、Android系统将内置滤镜功能滤镜功能有二十余种不同效果，不逊色于极受欢迎的智能手机应用Instagram所产生的效果。
-
-1、颜色矩阵 ColorMatrix
-a">
-    
-    
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="devsoulwolf" />
-    <meta name="twitter:title" content="Android Camera 实时滤镜 | Ching.Soulwolf" />
-      
-    
-    
-    <link rel="alternate" href="https://github.com/devsoulwolf" title="Ching.Soulwolf" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/author.png">
-    
-    
-    <link rel="apple-touch-icon" href="/img/author.png">
-    <link rel="apple-touch-icon-precomposed" href="/img/author.png">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-</head>
-
-  <body>
-    <header>
-      <div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/author.png" alt="Ching.Soulwolf" title="Ching.Soulwolf"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Ching.Soulwolf">Ching.Soulwolf</a></h1>
-				<h2 class="blog-motto">Welcome to Ching.Soulwolf personal blog, and look forward to everyone&#39;s acquaintance!</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:www.cblog.cc">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/03/Android-Camera-实时滤镜/" title="Android Camera 实时滤镜" itemprop="url">Android Camera 实时滤镜</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="https://plus.google.com/106830580871482751192?rel=author" title="Soulwolf" target="_blank" itemprop="author">Soulwolf</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2015-09-03T10:03:50.000Z" itemprop="datePublished">2015-09-03</time>
-    更新日期:<time datetime="2015-09-03T14:02:40.312Z" itemprop="dateModified">2015-09-03</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Android系统将内置滤镜功能"><span class="toc-number">1.</span> <span class="toc-text">一、Android系统将内置滤镜功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Android平台滤镜"><span class="toc-number">2.</span> <span class="toc-text">二、Android平台滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="##"><span class="toc-number">3.</span> <span class="toc-text">#</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、相机滤镜介绍"><span class="toc-number">4.</span> <span class="toc-text">二、相机滤镜介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、图片美化滤镜"><span class="toc-number">5.</span> <span class="toc-text">三、图片美化滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、社交分享滤镜"><span class="toc-number">6.</span> <span class="toc-text">四、社交分享滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、总结"><span class="toc-number">7.</span> <span class="toc-text">五、总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、基于Android平台基本滤镜算法的实现"><span class="toc-number">8.</span> <span class="toc-text">七、基于Android平台基本滤镜算法的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、后滤镜时代"><span class="toc-number">9.</span> <span class="toc-text">八、后滤镜时代</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九，基于Android平台PS特效的自定义算法的实现"><span class="toc-number">10.</span> <span class="toc-text">九，基于Android平台PS特效的自定义算法的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android_静态滤镜的实现"><span class="toc-number">11.</span> <span class="toc-text">Android 静态滤镜的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、静态滤镜的实现"><span class="toc-number">12.</span> <span class="toc-text">二、静态滤镜的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HSL色彩模式"><span class="toc-number">13.</span> <span class="toc-text">HSL色彩模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HSL色彩模式与RGB色彩模式转换代码实现"><span class="toc-number">14.</span> <span class="toc-text">HSL色彩模式与RGB色彩模式转换代码实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android_Camera可以做哪些？"><span class="toc-number">15.</span> <span class="toc-text">Android Camera可以做哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Camera_Preview是什么？"><span class="toc-number">16.</span> <span class="toc-text">Camera Preview是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何获取Camera_Preview中的数据？"><span class="toc-number">17.</span> <span class="toc-text">如何获取Camera Preview中的数据？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android_Camera_实时滤镜怎么做？"><span class="toc-number">18.</span> <span class="toc-text">Android Camera 实时滤镜怎么做？</span></a></li></ol>
-		</div>
-		
-		<p>版权声明：转载自<a href="http://blog.csdn.net/wyhuan1030/article/details/45094715" title="Neil Android Camera" target="_blank" rel="external">http://blog.csdn.net/wyhuan1030/article/details/45094715</a></p>
+    <entry>
+      <title><![CDATA[Android Camera 实时滤镜]]></title>
+      <link href="http://www.cblog.cc/2015/09/03/Android-Camera-%E5%AE%9E%E6%97%B6%E6%BB%A4%E9%95%9C/"/>
+      <url>http://www.cblog.cc/2015/09/03/Android-Camera-%E5%AE%9E%E6%97%B6%E6%BB%A4%E9%95%9C/</url>
+      <content type="html"><![CDATA[<p>版权声明：转载自<a href="http://blog.csdn.net/wyhuan1030/article/details/45094715" title="Neil Android Camera" target="_blank" rel="external">http://blog.csdn.net/wyhuan1030/article/details/45094715</a></p>
 <h1 id="一、Android系统将内置滤镜功能">一、Android系统将内置滤镜功能</h1><p>滤镜功能有二十余种不同效果，不逊色于极受欢迎的智能手机应用Instagram所产生的效果。</p>
 <p><img src="http://img.blog.csdn.net/20150417112538878?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvV1lIdWFuMTAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <p>1、颜色矩阵 ColorMatrix</p>
@@ -324,239 +235,22 @@ L： lum 亮度
 <li>提高性能  <br><br>GPU优化 <br></li>
 </ul>
 </blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[New environment,new start]]></title>
+      <link href="http://www.cblog.cc/2015/09/03/New-environment-new-start/"/>
+      <url>http://www.cblog.cc/2015/09/03/New-environment-new-start/</url>
+      <content type="html"><![CDATA[<p>谢谢你，懂我的人，一路默默的陪我，让我拥有好故事可以说</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/1025192026/TB2ndrReVXXXXb0XpXXXXXXXXXX_!!1025192026.jpg" alt=""></p>
+<p>这一路走来，有欢笑也有泪水，有喜悦也有痛苦，有悲欢也有离合，这就是成长.</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/1025192026/TB2t9_.eVXXXXbgXXXXXXXXXXXX_!!1025192026.jpeg" alt=""></p>
+<p>其实，如果让每个人都从事自己终身喜爱的职业，那一定是一件很幸福的事，但人生有无数种可能和选择，不管儿时的梦想能否实现，都应该努力让自己的每一天过得充实而有价值。</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/1025192026/TB2wA7deVXXXXXLXXXXXXXXXXXX_!!1025192026.jpg" alt=""></p>
+]]></content>
+    </entry>
+    
   
-	</div>
-		<footer class="article-footer clearfix">
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/Camera/">Camera</a>
-  </div>
-
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="http://www.cblog.cc/2015/09/03/Android-Camera-实时滤镜/" data-title="Android Camera 实时滤镜 | Ching.Soulwolf" data-tsina="null" class="share clearfix">
-  </div>
-
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
-
-<div class="next">
-<a href="/2015/09/03/New-environment-new-start/"  title="New environment,new start">
- <strong>NEXT:</strong><br/> 
- <span>New environment,new start
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section class="comment">
-	<div class="ds-thread"></div>
-</section>
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Android系统将内置滤镜功能"><span class="toc-number">1.</span> <span class="toc-text">一、Android系统将内置滤镜功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Android平台滤镜"><span class="toc-number">2.</span> <span class="toc-text">二、Android平台滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="##"><span class="toc-number">3.</span> <span class="toc-text">#</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、相机滤镜介绍"><span class="toc-number">4.</span> <span class="toc-text">二、相机滤镜介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、图片美化滤镜"><span class="toc-number">5.</span> <span class="toc-text">三、图片美化滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、社交分享滤镜"><span class="toc-number">6.</span> <span class="toc-text">四、社交分享滤镜</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、总结"><span class="toc-number">7.</span> <span class="toc-text">五、总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、基于Android平台基本滤镜算法的实现"><span class="toc-number">8.</span> <span class="toc-text">七、基于Android平台基本滤镜算法的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、后滤镜时代"><span class="toc-number">9.</span> <span class="toc-text">八、后滤镜时代</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九，基于Android平台PS特效的自定义算法的实现"><span class="toc-number">10.</span> <span class="toc-text">九，基于Android平台PS特效的自定义算法的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android_静态滤镜的实现"><span class="toc-number">11.</span> <span class="toc-text">Android 静态滤镜的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、静态滤镜的实现"><span class="toc-number">12.</span> <span class="toc-text">二、静态滤镜的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HSL色彩模式"><span class="toc-number">13.</span> <span class="toc-text">HSL色彩模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HSL色彩模式与RGB色彩模式转换代码实现"><span class="toc-number">14.</span> <span class="toc-text">HSL色彩模式与RGB色彩模式转换代码实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android_Camera可以做哪些？"><span class="toc-number">15.</span> <span class="toc-text">Android Camera可以做哪些？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Camera_Preview是什么？"><span class="toc-number">16.</span> <span class="toc-text">Camera Preview是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何获取Camera_Preview中的数据？"><span class="toc-number">17.</span> <span class="toc-text">如何获取Camera Preview中的数据？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android_Camera_实时滤镜怎么做？"><span class="toc-number">18.</span> <span class="toc-text">Android Camera 实时滤镜怎么做？</span></a></li></ol>
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/Camera/" title="Camera">Camera<sup>1</sup></a></li>
-		
-			<li><a href="/tags/过去，现在，未来/" title="过去，现在，未来">过去，现在，未来<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
-
-  <div class="rsspart">
-	<a href="https://github.com/devsoulwolf" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Don&#39;t aim for success if you want it; just do what you love and believe in, and it will come naturally. <br/>
-			如果你想要成功，不要去追求成功；尽管做你自己热爱的事情并且相信它，成功自然到来。</p>
-	</section>
-	 
-	<div class="social-font clearfix">
-		
-		<a href="http://weibo.com/freakqin" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/devsoulwolf" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/devsoulwolf" target="_blank" title="github"></a>
-		
-		
-		<a href="https://www.facebook.com/soulwolf.ching" target="_blank" title="facebook"></a>
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
-		
-		<a href="http://www.cblog.cc" target="_blank" title="Soulwolf">Soulwolf</a>
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"soulwolf"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-  </body>
-</html>
+</search>
