@@ -1,0 +1,380 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android-Parallax(仿QQ空间首页下拉效果) | Ching.Soulwolf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Soulwolf">
+    
+    <meta name="description" content="一直觉得QQ空间首页的下拉刷新效果不错，挺舒服，正好这几天放假决定撸一库出来
+觉得不错的小伙伴 戳这里
+
+先上效果图
+
+
+代码比较简单，基本原理就是处理ParallaxScrollLayout中的onInterceptTouchEvent和onTouchEvent方法实现滚动的拦截和移动列表，采用v">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="devsoulwolf" />
+    <meta name="twitter:title" content="Android-Parallax(仿QQ空间首页下拉效果) | Ching.Soulwolf" />
+      
+    
+    
+    <link rel="alternate" href="https://github.com/devsoulwolf" title="Ching.Soulwolf" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/author.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.png" alt="Ching.Soulwolf" title="Ching.Soulwolf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Ching.Soulwolf">Ching.Soulwolf</a></h1>
+				<h2 class="blog-motto">Welcome to Ching.Soulwolf personal blog, and look forward to everyone&#39;s acquaintance!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.cblog.cc">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/03/Android-Parallax-仿QQ空间首页下拉刷新效果/" title="Android-Parallax(仿QQ空间首页下拉效果)" itemprop="url">Android-Parallax(仿QQ空间首页下拉效果)</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://plus.google.com/106830580871482751192?rel=author" title="Soulwolf" target="_blank" itemprop="author">Soulwolf</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-02T19:19:45.000Z" itemprop="datePublished">2015-09-03</time>
+    更新日期:<time datetime="2015-09-04T20:12:30.421Z" itemprop="dateModified">2015-09-05</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<p>一直觉得QQ空间首页的下拉刷新效果不错，挺舒服，正好这几天放假决定撸一库出来</p>
+<p>觉得不错的小伙伴 <a href="https://github.com/devsoulwolf/Android-ParallaxRefresh" target="_blank" rel="external">戳这里</a></p>
+<hr>
+<p>先上效果图</p>
+<p><img src="https://img.alicdn.com/imgextra/i3/1025192026/TB2pBIHeVXXXXb3XXXXXXXXXXXX_!!1025192026.gif" alt="Sample"><br><img src="https://img.alicdn.com/imgextra/i4/1025192026/TB2yYAweVXXXXaIXpXXXXXXXXXX_!!1025192026.gif" alt="Sample"></p>
+<blockquote>
+<p>代码比较简单，基本原理就是处理ParallaxScrollLayout中的onInterceptTouchEvent和onTouchEvent方法实现滚动的拦截和移动列表，采用v4包中的ViewCompat.setTranslationY(mParallaxTarget,translationY);类来移动列表，</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">switch</span> (e.getAction()) &#123;</span><br><span class="line">           <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">               mTouchStartY = e.getY();</span><br><span class="line">               mCurrentY = mTouchStartY;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">               <span class="keyword">float</span> currentY = e.getY();</span><br><span class="line">               <span class="keyword">float</span> dy = currentY - mTouchStartY;</span><br><span class="line">               <span class="keyword">if</span> (dy &gt; mTouchSlop &amp;&amp; !Utils.canChildScrollUp(mParallaxTarget)) &#123;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(e);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(@NonNull MotionEvent e)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">switch</span> (e.getAction()) &#123;</span><br><span class="line">           <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">               mCurrentY = e.getY();</span><br><span class="line">               <span class="keyword">float</span> dy = Utils.constrains(mCurrentY - mTouchStartY, <span class="number">0</span>, getMaxScrollY() * <span class="number">2</span>);</span><br><span class="line">               <span class="keyword">if</span>(mParallaxTarget != <span class="keyword">null</span>)&#123;</span><br><span class="line">                   <span class="keyword">float</span> translationY = DECELERATE_INTERPOLATOR.getInterpolation(dy / getMaxScrollY() / <span class="number">2</span>) * dy / <span class="number">2</span>;</span><br><span class="line">                   ViewCompat.setTranslationY(mParallaxTarget,translationY);</span><br><span class="line">                   onParallaxScrollChanged(<span class="number">0</span>, (<span class="keyword">int</span>) -translationY,<span class="keyword">true</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">           <span class="keyword">case</span> MotionEvent.ACTION_CANCEL:</span><br><span class="line">           <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">               rollback();</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">           <span class="keyword">default</span>:</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(e);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后在手指抬起的时候回滚到原始位置，触发刷新</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rollback</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(tryParallaxHolder())&#123;</span><br><span class="line">           mParallaxHolder.onRollback();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(hasPlaceReset())&#123;</span><br><span class="line">           RollbackAnimation animation = <span class="keyword">new</span> RollbackAnimation(mParallaxTarget,</span><br><span class="line">                   <span class="number">0</span>,getMaxScrollY());</span><br><span class="line">           animation.setInterpolator(ROLLBACK_INTERPOLATOR);</span><br><span class="line">           animation.setDuration(ROLLBACK_DURATION);</span><br><span class="line">           animation.start();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ParallaxScrollLayout类是一个FrameLayout，通过setParallaxHolder(IParallaxHolder holder)方法初始化头部的背景View，头部View的显示区域是在ScrollView或者ListView的顶部添加了一个展位视图（PlaceholderView），如果滚动列表是一个ListView的时候，千万不能给ListView设置背景，否则就会导致头部背景View看不到了，因为被ListView盖住了，ScrollView则没有限制，ScrollView的内部做了处理</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseParallaxHolder</span> <span class="keyword">implements</span> <span class="title">IParallaxHolder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> PARALLAX_RATIO = <span class="number">5.0f</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Interpolator ROLLBACK_INTERPOLATOR = <span class="keyword">new</span> DecelerateInterpolator();</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span>         ROLLBACK_DURATION     = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> Context mContext;</span><br><span class="line">    <span class="keyword">protected</span> ParallaxMode mParallaxMode;</span><br><span class="line">    <span class="keyword">private</span> View mContentView;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mRealWidth;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mRealHeight;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mContext = context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMeasured</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mRealWidth = width;</span><br><span class="line">        <span class="keyword">this</span>.mRealHeight = height;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getRealWidth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mRealWidth;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getRealHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mRealHeight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setParallaxMode</span><span class="params">(@NonNull ParallaxMode mode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mParallaxMode = mode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScrollChanged</span><span class="params">(<span class="keyword">int</span> scrollX, <span class="keyword">int</span> scrollY, <span class="keyword">boolean</span> isTouchEvent)</span> </span>&#123;</span><br><span class="line">        ViewCompat.setTranslationY(mContentView,Utils.constrains(-scrollY / PARALLAX_RATIO,<span class="number">0</span>,getParallaxTop()));</span><br><span class="line">        <span class="keyword">if</span>(mParallaxMode == ParallaxMode.PARALLAX_MODE_SCROLL</span><br><span class="line">                &amp;&amp; scrollY &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            ViewCompat.setTranslationY(mContentView,-scrollY);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRollback</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ViewCompat.getTranslationY(mContentView) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            Animation animation = ObjectAnimator.ofTranslationY(mContentView,<span class="number">0</span>);</span><br><span class="line">            animation.setDuration(ROLLBACK_DURATION);</span><br><span class="line">            animation.setInterpolator(ROLLBACK_INTERPOLATOR);</span><br><span class="line">            animation.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mContext = <span class="keyword">null</span>;</span><br><span class="line">        mContentView = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onViewCreated</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container)</span> </span>&#123;</span><br><span class="line">        mContentView = onCreateView(inflater,container,<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> mContentView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container,<span class="keyword">boolean</span> attachRoot)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> View <span class="title">findViewById</span><span class="params">(View container,@IdRes <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> container == <span class="keyword">null</span> ? <span class="keyword">null</span> : container.findViewById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> View <span class="title">findViewById</span><span class="params">(@IdRes <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> findViewById(getContentView(),id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getContentView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mContentView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>BaseParallaxHolder 类是用来初始化头部背景View和实现视差滚动的，监听滚动列表的滚动事件，回调onScrollChanged(int scrollX, int scrollY, boolean isTouchEvent)方法来移动头部背景View，如果你有不喜欢我的这种移动方式，则可以重写该方法实现自己想要的效果。<br>大家可以看到 该类中有一个 枚举 ParallaxMode，这个是用来控制在列表滚动的时候是否需要头部背景View跟随列表一起滚动，可以通过ParallaxScrollLayout的自定义参数psvParallaxMode在布局文件中指定。</p>
+</blockquote>
+<p>关于滚动视图我只实现了ScrollView(ParallaxScrollView)和ListView(ParallaxListView)<br>如果你用到了其他的滚动视图或者是自定义的滚动视图，不要担心，你只需要让该视图实现ParallaxScrollObserver接口，并完成回调就可以了。</p>
+<blockquote>
+<p>使用方法也很简单</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">net.soulwolf.widget.parallaxrefresh.ParallaxScrollLayout</span></span><br><span class="line">       <span class="attribute">android:id</span>=<span class="value">"@+id/parallax"</span></span><br><span class="line">       <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">       <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;<span class="title">net.soulwolf.widget.parallaxrefresh.widget.ParallaxListView</span></span><br><span class="line">           <span class="attribute">android:id</span>=<span class="value">"@+id/list"</span></span><br><span class="line">           <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">           <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="title">net.soulwolf.widget.parallaxrefresh.ParallaxScrollLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>net.soulwolf.widget.parallaxrefresh.widget.ParallaxListView可以替换成其他滚动视图，需要注意的是ParallaxScrollLayout只能包含一个滚动视图，如果你包含了多个，则会使用第一个。</p>
+<p>然后在Java代码找到ParallaxScrollLayout控件，设置ParallaxHolder可以了</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mParallaxScrollLayout = (ParallaxScrollLayout) findViewById(R.id.parallax);</span><br><span class="line">   mParallaxScrollLayout.setParallaxHolder(<span class="keyword">new</span> SimpleParallaxHolder());</span><br><span class="line">   mParallaxScrollLayout.setRefreshRatio(.<span class="number">8f</span>);</span><br><span class="line">   mParallaxScrollLayout.setOnRefreshListener(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>setRefreshRatio表示下拉的时候是否需要刷新的界限的百分比，取值的（0.0f-1.0f）之间<br>setOnRefreshListener 设置刷新监听</p>
+</blockquote>
+<p>Android-Parallax就介绍到这里，如果你有任何问题都可以给我发邮件(it_power@foxmail.com)</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/下拉刷新/">下拉刷新</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.cblog.cc/2015/09/03/Android-Parallax-仿QQ空间首页下拉刷新效果/" data-title="Android-Parallax(仿QQ空间首页下拉效果) | Ching.Soulwolf" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/03/Android-Camera-实时滤镜/" title="Android Camera 实时滤镜">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Android Camera 实时滤镜</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/03/New-environment-new-start/"  title="New environment,new start">
+ <strong>NEXT:</strong><br/> 
+ <span>New environment,new start
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Camera/" title="Camera">Camera<sup>1</sup></a></li>
+		
+			<li><a href="/tags/下拉刷新/" title="下拉刷新">下拉刷新<sup>1</sup></a></li>
+		
+			<li><a href="/tags/过去，现在，未来/" title="过去，现在，未来">过去，现在，未来<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="https://github.com/devsoulwolf" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Don&#39;t aim for success if you want it; just do what you love and believe in, and it will come naturally. <br/>
+			如果你想要成功，不要去追求成功；尽管做你自己热爱的事情并且相信它，成功自然到来。</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/freakqin" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/devsoulwolf" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/devsoulwolf" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/soulwolf.ching" target="_blank" title="facebook"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://www.cblog.cc" target="_blank" title="Soulwolf">Soulwolf</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"soulwolf"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>
