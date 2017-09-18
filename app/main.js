@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/router', './components/home/home.comp', './components/resume/resume.comp'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router', './components/home/home.comp'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(['@angular/core', '@angular/router', './components/home/home.com
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_comp_1, resume_comp_1;
-    var IvanhoinackiApp;
+    var core_1, router_1, home_comp_1;
+    var AmphiarausApp;
     return {
         setters:[
             function (core_1_1) {
@@ -22,19 +22,16 @@ System.register(['@angular/core', '@angular/router', './components/home/home.com
             },
             function (home_comp_1_1) {
                 home_comp_1 = home_comp_1_1;
-            },
-            function (resume_comp_1_1) {
-                resume_comp_1 = resume_comp_1_1;
             }],
         execute: function() {
-            IvanhoinackiApp = (function () {
-                function IvanhoinackiApp() {
+            AmphiarausApp = (function () {
+                function AmphiarausApp() {
                 }
-                IvanhoinackiApp.prototype.onClickOverlay = function () {
+                AmphiarausApp.prototype.onClickOverlay = function () {
                     $('#toggle').toggleClass('active');
                     $('#overlay').toggleClass('open');
                 };
-                IvanhoinackiApp.prototype.ngOnInit = function () {
+                AmphiarausApp.prototype.ngOnInit = function () {
                     $('.description').typed({
                         strings: [
                             'web deev..', 'Frontend Engineer ;)'
@@ -42,26 +39,22 @@ System.register(['@angular/core', '@angular/router', './components/home/home.com
                         backDelay: 300,
                         typeSpeed: 30
                     });
-                    console.log("@ivanhoinacki initialized...");
+                    console.log("@amphiaraus initialized...");
                 };
-                IvanhoinackiApp = __decorate([
+                AmphiarausApp = __decorate([
                     core_1.Component({
-                        selector: 'ivanhoinacki',
+                        selector: 'amphiaraus',
                         providers: [],
                         templateUrl: 'app/main.html',
                         styleUrls: ['app/main.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],
                         pipes: []
-                    }),
-                    router_1.RouteConfig([
-                        new router_1.Route({ path: '/', component: home_comp_1.HomeCmp, name: 'HomeCmp' }),
-                        new router_1.Route({ path: '/resume', component: resume_comp_1.ResumeCmp, name: 'Resume' })
-                    ]), 
+                    })
                     __metadata('design:paramtypes', [])
-                ], IvanhoinackiApp);
-                return IvanhoinackiApp;
+                ], AmphiarausApp);
+                return AmphiarausApp;
             }());
-            exports_1("IvanhoinackiApp", IvanhoinackiApp);
+            exports_1("AmphiarausApp", AmphiarausApp);
         }
     }
 });

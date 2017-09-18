@@ -23,7 +23,7 @@ System.register(['@angular/core', '@angular/platform/browser', '@angular/router'
             }],
         execute: function() {
             core_1.enableProdMode();
-            browser_1.bootstrap(main_1.IvanhoinackiApp, [
+            browser_1.bootstrap(main_1.AmphiarausApp, [
                 router_1.ROUTER_PROVIDERS,
                 highlight_directive_1.HighlightDirective,
                 core_1.provide(router_1.LocationStrategy, {

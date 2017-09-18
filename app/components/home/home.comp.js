@@ -30,7 +30,7 @@ System.register(['@angular/core', '../icons/icons.comp', '../social-media/social
                 HomeCmp.prototype.ngOnInit = function () {
                     $('.description').typed({
                         strings: [
-                            'web deev..', 'Frontend Engineer ;)'
+                            'web deev..', 'Android Engineer ;)'
                         ],
                         backDelay: 300,
                         typeSpeed: 30
