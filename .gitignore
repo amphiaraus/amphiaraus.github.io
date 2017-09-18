@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .idea
 build
 node_modules
@@ -15,3 +16,6 @@ npm-debug.log
 !typings/typings.d.ts
 !wallaby.js
 src 
+=======
+/node_modules
+>>>>>>> 14caacbe7784480736871b250c8cad753bdb4a52
