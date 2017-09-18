@@ -13,6 +13,10 @@ import {HomeCmp} from './components/home/home.comp';
     pipes: []
 })
 
+@RouteConfig([
+    new Route({ path: '/', component: HomeCmp, name: 'HomeCmp' })
+])
+
 export class AmphiarausApp implements OnInit {
 
     public onClickOverlay() {

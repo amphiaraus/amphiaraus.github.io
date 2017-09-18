@@ -50,6 +50,9 @@ System.register(['@angular/core', '@angular/router', './components/home/home.com
                         directives: [router_1.ROUTER_DIRECTIVES],
                         pipes: []
                     }),
+                    router_1.RouteConfig([
+                        new router_1.Route({ path: '/', component: home_comp_1.HomeCmp, name: 'HomeCmp' })
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], AmphiarausApp);
                 return AmphiarausApp;
