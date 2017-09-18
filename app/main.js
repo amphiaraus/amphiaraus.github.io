@@ -49,7 +49,7 @@ System.register(['@angular/core', '@angular/router', './components/home/home.com
                         styleUrls: ['app/main.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],
                         pipes: []
-                    })
+                    }),
                     __metadata('design:paramtypes', [])
                 ], AmphiarausApp);
                 return AmphiarausApp;
