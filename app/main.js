@@ -34,7 +34,7 @@ System.register(['@angular/core', '@angular/router', './components/home/home.com
                 AmphiarausApp.prototype.ngOnInit = function () {
                     $('.description').typed({
                         strings: [
-                            'web deev..', 'Frontend Engineer ;)'
+                            'web deev..', 'Android Engineer ;)'
                         ],
                         backDelay: 300,
                         typeSpeed: 30
