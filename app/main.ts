@@ -3,7 +3,6 @@ import {RouteConfig, Route, ROUTER_DIRECTIVES, OnActivate} from '@angular/router
 
 import {HomeCmp} from './components/home/home.comp';
 
-
 @Component({
     selector: 'amphiaraus',
     providers: [],
@@ -13,16 +12,7 @@ import {HomeCmp} from './components/home/home.comp';
     pipes: []
 })
 
-@RouteConfig([
-    new Route({ path: '/', component: HomeCmp, name: 'HomeCmp' })
-])
-
 export class AmphiarausApp implements OnInit {
-
-    public onClickOverlay() {
-        $('#toggle').toggleClass('active');
-        $('#overlay').toggleClass('open');
-    }
 
     ngOnInit() {
         $('.description').typed({
